@@ -5,7 +5,7 @@
 
 > [Remark][remark] cli
 
-[remark][remark] is a simple, in-browser, markdown-driven slideshow tool. `remarker` is a command line tool for building a [remark][remark]-based slideshow page very easily.
+[remark][remark] is a simple, in-browser, markdown-driven slideshow tool. `remarker` is a command line tool for building a remark-based slideshow page very easily.
 
 # Usage
 
