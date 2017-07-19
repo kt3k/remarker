@@ -5,6 +5,7 @@
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
+    "lint": "standard",
     "test": "kocha test",
     "cov": "nyc --reporter=lcov --reporter=text-summary npm test",
     "codecov": "npm run cov && codecov"
@@ -38,6 +39,7 @@
     "kocha": "^1.8.0",
     "nyc": "^11.0.3",
     "remark": "https://github.com/gnab/remark.git#v0.14.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "standard": "^10.0.2"
   }
 }
