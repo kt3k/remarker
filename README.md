@@ -1,6 +1,8 @@
 # remarker v0.1.0
 
-> Remark cli
+> [Remark][remark] cli
+
+[remark][remark] is a simple, in-browser, markdown-driven slideshow tool. `remarker` is a command line tool for building a [remark][remark]-based slideshow page very easily.
 
 # Usage
 
@@ -34,19 +36,19 @@ Invoke `remarker` command.
 $ ./node_modules/.bin/remarker
 ```
 
-This starts a local server at port 6275 (this is configurable) and you can see your slide at [http://localhost:6275/](http://localhost:6275/).
+This starts a local server at port 6275 (this is configurable) and you can see your slides at [http://localhost:6275/](http://localhost:6275/).
 
 See remark's [slide](https://remarkjs.com/) and [documentation](https://github.com/gnab/remark#remark) for more details about its syntax, features etc.
 
 ## Build slides
 
-You can build your slide as static page as `remarker build` command.
+You can build your slides as static page as `remarker build` command.
 
 ```console
 $ ./node_modules/.bin/remarker build
 ```
 
-This builds your slide as html page under `build/` directory. The output directory is configurable. See the below for details.
+This builds your slides as html page under `build/` directory. The output directory is configurable. See the below for details.
 
 # Configuration
 
@@ -68,6 +70,14 @@ css: ''
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
 
+# Examples
+
+- [simple example](https://github.com/kt3k/remarker/tree/master/examples/simple)
+- [remark slides](https://github.com/kt3k/remarker/tree/master/examples/remark)
+  - The original `remark` slides in `remarker` configuration.
+
 # License
 
 MIT
+
+[remark]: https://github.com/gnab/remark
