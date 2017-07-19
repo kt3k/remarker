@@ -1,0 +1,31 @@
+{
+  "name": "remarker",
+  "version": "0.1.0",
+  "description": "Remark cli",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "kocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kt3k/remarker.git"
+  },
+  "keywords": [
+    "remark",
+    "markdown",
+    "cli",
+    "slides"
+  ],
+  "author": "Yoshiya Hinosawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kt3k/remarker/issues"
+  },
+  "homepage": "https://github.com/kt3k/remarker#readme",
+  "dependencies": {
+    "berber": "^1.1.4",
+    "layout1": "^1.1.0",
+    "marked": "^0.3.6"
+  }
+}
