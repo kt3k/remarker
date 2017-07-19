@@ -25,7 +25,12 @@
   "homepage": "https://github.com/kt3k/remarker#readme",
   "dependencies": {
     "berber": "^1.1.4",
+    "gulp-rename": "^1.2.2",
     "layout1": "^1.1.0",
-    "marked": "^0.3.6"
+    "nunjucks": "^3.0.1",
+    "require-yaml": "0.0.1"
+  },
+  "devDependencies": {
+    "remark": "https://github.com/gnab/remark.git#v0.14.0"
   }
 }
