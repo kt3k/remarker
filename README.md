@@ -1,5 +1,8 @@
 # remarker v0.1.0
 
+[![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
+[![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
+
 > [Remark][remark] cli
 
 [remark][remark] is a simple, in-browser, markdown-driven slideshow tool. `remarker` is a command line tool for building a [remark][remark]-based slideshow page very easily.
