@@ -58,12 +58,14 @@ Default settings are as follows:
 port: 6275
 dest: build
 source: slides.md
+title: ''
 css: ''
 ```
 
 - `port` is the port number of remarker server. Default is `6275`.
 - `dest` is the destination of `remarker build` command. Default is `build`
 - `source` is the source markdown filename. Default is `slides.md`.
+- `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
 
 # License
