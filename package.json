@@ -5,7 +5,9 @@
   "main": "index.js",
   "bin": "index.js",
   "scripts": {
-    "test": "kocha test"
+    "test": "kocha test",
+    "cov": "nyc --reporter=lcov --reporter=text-summary npm test",
+    "codecov": "npm run cov && codecov"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,11 @@
     "require-yaml": "0.0.1"
   },
   "devDependencies": {
-    "remark": "https://github.com/gnab/remark.git#v0.14.0"
+    "chai": "^4.1.0",
+    "codecov": "^2.2.0",
+    "kocha": "^1.8.0",
+    "nyc": "^11.0.3",
+    "remark": "https://github.com/gnab/remark.git#v0.14.0",
+    "rimraf": "^2.6.1"
   }
 }
