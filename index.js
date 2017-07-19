@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { asset, name, on } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
