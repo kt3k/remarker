@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { asset, name, on, port } = require('berber')
+const { asset, dest, name, on, port } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
 const { readFileSync } = require('fs')
@@ -28,7 +28,8 @@ name('remarker')
 on('config', config => {
   config = config || {}
 
-  port(6275)
+  port(config.port || 6275)
+  dest(config.dest || 'build')
 
   asset(config.source || 'slides.md')
     .pipe(rename({ basename: 'index', extname: '.html' }))
