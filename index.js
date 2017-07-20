@@ -15,7 +15,7 @@ const defaultCss = `
     font-family: 'Avenir Next', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
   }
   h1, h2, h3 {
-    font-weight: normal;
+    font-weight: bold;
   }
   .remark-code,
   .remark-inline-code {
