@@ -40,4 +40,7 @@ on('config', config => {
         title: config.title || ''
       }
     }))
+
+  const assets = config.assets || ['assets']
+  assets.forEach(src => { asset(join(src, '**/*.*')) })
 })
