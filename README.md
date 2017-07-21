@@ -53,6 +53,21 @@ $ ./node_modules/.bin/remarker build
 
 This builds your slides as html page under `build/` directory. The output directory is configurable. See the below for details.
 
+## Installing globally
+
+You can instead install it globally, in one of these two ways:
+
+```bash
+sudo npm i -g remarker    # from the npm repository
+sudo npm i -g .           # if there's a clone in the current directory
+```
+
+After that, you should be able to invoke it this way from any directory in your system:
+
+```bash
+remarker [build]
+```
+
 # Configuration
 
 You can configure remarker with configuration file called `remarker.yml`:
