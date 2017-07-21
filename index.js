@@ -42,5 +42,7 @@ on('config', config => {
     }))
 
   const assets = config.assets || ['assets']
-  assets.forEach(src => { asset(join(src, '**/*.*')) })
+  assets.forEach(src => {
+    asset(join(src, '**/*.*')).base(process.cwd())
+  })
 })
