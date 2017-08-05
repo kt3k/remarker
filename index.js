@@ -21,6 +21,11 @@ const defaultCss = `
   .remark-inline-code {
     font-family: 'Menlo', 'Monaco', 'Courier new', monospace;
   }
+
+  .remark-slide-content.inverse {
+    color: #f3f3f3;
+    background-color: #272822;
+  }
 `
 
 name('remarker')
@@ -37,7 +42,8 @@ on('config', config => {
       data: {
         script,
         css: config.css || defaultCss,
-        title: config.title || ''
+        title: config.title || '',
+        remarkConfig: config.remarkConfig || {}
       }
     }))
 

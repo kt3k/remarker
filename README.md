@@ -81,6 +81,7 @@ source: slides.md
 assets: ['assets']
 title: ''
 css: ''
+remarkConfig: {}
 ```
 
 - `port` is the port number of remarker server. Default is `6275`.
@@ -89,6 +90,8 @@ css: ''
 - `assets` is the list of assets directory. These directories are copied/served statically.
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
+- `remarkConfig` is the config object which is passed to remark.create(options). Default is an empty object.
+  - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
 
 # Examples
 
