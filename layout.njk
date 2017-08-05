@@ -11,7 +11,7 @@
     <textarea id="source">{{ file.contents | safe }}</textarea>
     <script>
       {{ script | safe }}
-      remark.create()
+      remark.create({{ remarkConfig | dump | safe }})
     </script>
   </body>
 </html>
