@@ -1,4 +1,4 @@
-# remarker v1.2.1
+# remarker v1.3.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -98,6 +98,10 @@ remarkConfig: {}
 - [simple example](https://github.com/kt3k/remarker/tree/master/examples/simple)
 - [remark slides](https://github.com/kt3k/remarker/tree/master/examples/remark)
   - The original `remark` slides in `remarker` configuration.
+
+# History
+
+- 2017-08-05   v1.3.0   Add remarkConfig prop.
 
 # License
 
