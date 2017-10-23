@@ -39,6 +39,12 @@ Invoke `remarker` command.
 $ ./node_modules/.bin/remarker
 ```
 
+Or if you have `npx` command, then hit:
+
+```console
+$ npx remarker
+```
+
 This starts a local server at port 6275 (this is configurable) and you can see your slides at [http://localhost:6275/](http://localhost:6275/).
 
 See remark's [slide](https://remarkjs.com/) and [documentation](https://github.com/gnab/remark#remark) for more details about its syntax, features etc.
@@ -98,6 +104,10 @@ remarkConfig: {}
 - [simple example](https://github.com/kt3k/remarker/tree/master/examples/simple)
 - [remark slides](https://github.com/kt3k/remarker/tree/master/examples/remark)
   - The original `remark` slides in `remarker` configuration.
+
+# Motivation of `remarker`
+
+`remark` is a great presentation tool and you can write your slide's contents in markdown. The problem is when you simply use ramark, you need to maintain the html, css and scripts as well as markdown. If you care the details of design and style of the slides, that's fine. However if you don't care the design of the slides that much and want to focus only on the contents, then the settings of css, html, scripts seem quite messy. The problem `remarker` solves is this point. `remarker` separates the contents (= markdown) from the settings (css, html, scripts). So you can only focus on and keep maintaining the contents of the slides and let `remarker` do the rest of the work. This is easier than using `remark` directly.
 
 # History
 
