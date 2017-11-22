@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { asset, dest, name, on, port } = require('berber')
+const { asset, dest, name, on, port, debugPagePath } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
 const { readFileSync } = require('fs')
@@ -52,3 +52,5 @@ on('config', config => {
     asset(join(src, '**/*.*')).base(process.cwd())
   })
 })
+
+debugPagePath('__remarker__')
