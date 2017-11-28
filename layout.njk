@@ -9,8 +9,8 @@
   </head>
   <body>
     <textarea id="source">{{ file.contents | safe }}</textarea>
+    <script src="remark.js"></script>
     <script>
-      {{ script | safe }}
       remark.create({{ remarkConfig | dump | safe }})
     </script>
   </body>
