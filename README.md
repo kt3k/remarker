@@ -88,6 +88,7 @@ assets: ['assets']
 title: ''
 css: ''
 remarkConfig: {}
+remarkPath: moduleDir + '/vendor/remark.js'
 ```
 
 - `port` is the port number of remarker server. Default is `6275`.

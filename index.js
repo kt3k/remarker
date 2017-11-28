@@ -28,30 +28,39 @@ const defaultCss = `
   }
 `
 
+const defaultConfig = {
+  title: '',
+  port: 6275,
+  dest: 'build',
+  source: 'slides.md',
+  css: defaultCss,
+  remarkConfig: {},
+  remarkPath: join(__dirname, 'vendor', 'remark.js'),
+  assets: ['assets']
+}
+
 name('remarker')
 
 on('config', config => {
-  config = config || {}
+  config = Object.assign({}, defaultConfig, config)
 
-  port(config.port || 6275)
-  dest(config.dest || 'build')
+  port(config.port)
+  dest(config.dest)
 
-  asset(config.source || 'slides.md')
+  asset(config.source)
     .pipe(rename({ basename: 'index', extname: '.html' }))
     .pipe(layout1.nunjucks(layoutFilename, {
       data: {
-        css: config.css || defaultCss,
-        title: config.title || '',
-        remarkConfig: config.remarkConfig || {}
+        css: config.css,
+        title: config.title,
+        remarkConfig: config.remarkConfig
       }
     }))
 
-  asset(config.remarkPath || join(__dirname, 'vendor', 'remark.js'))
+  asset(config.remarkPath)
     .pipe(rename('remark.js'))
 
-  const assets = config.assets || ['assets']
-
-  assets.forEach(src => {
+  config.assets.forEach(src => {
     asset(join(src, '**/*.*')).base(process.cwd())
   })
 })
