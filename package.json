@@ -1,6 +1,6 @@
 {
   "name": "remarker",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Remark cli",
   "main": "index.js",
   "bin": "index.js",
