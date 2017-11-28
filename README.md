@@ -91,14 +91,21 @@ remarkConfig: {}
 remarkPath: moduleDir + '/vendor/remark.js'
 ```
 
+## Basic options
+
 - `port` is the port number of remarker server. Default is `6275`.
 - `dest` is the destination of `remarker build` command. Default is `build`
 - `source` is the source markdown filename. Default is `slides.md`.
-- `assets` is the list of assets directory. These directories are copied/served statically.
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
+
+## Advanced options
+
+- `assets` is the list of assets directory. These directories are copied/served statically.
+- `script` is additional JavaScript appended after the remark.js. Default is an empty string.
 - `remarkConfig` is the config object which is passed to remark.create(options). Default is an empty object.
   - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
+- `remarkPath` is the path to remark.js. This replaces the original remark.js with specified one.
 
 # Examples
 

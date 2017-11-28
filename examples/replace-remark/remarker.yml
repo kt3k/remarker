@@ -1,1 +1,2 @@
 remarkPath: my-own-remark.js
+script: console.log("injected script")

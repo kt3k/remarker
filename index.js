@@ -34,6 +34,7 @@ const defaultConfig = {
   dest: 'build',
   source: 'slides.md',
   css: defaultCss,
+  script: '',
   remarkConfig: {},
   remarkPath: join(__dirname, 'vendor', 'remark.js'),
   assets: ['assets']
@@ -52,6 +53,7 @@ on('config', config => {
     .pipe(layout1.nunjucks(layoutFilename, {
       data: {
         css: config.css,
+        script: config.script,
         title: config.title,
         remarkConfig: config.remarkConfig
       }

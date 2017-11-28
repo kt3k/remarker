@@ -37,4 +37,12 @@ describe('remarker', () => {
 
     expect(readFileSync(join(__dirname, 'examples/replace-remark/build/remark.js')).toString()).to.include('console.log("remark.js")')
   })
+
+  it('injects scripts by remarker.yml\'s script', () => {
+    execSync('node ../../index.js build', {
+      cwd: join(__dirname, 'examples/replace-remark')
+    })
+
+    expect(readFileSync(join(__dirname, 'examples/replace-remark/build/index.html')).toString()).to.include('console.log("injected script")')
+  })
 })
