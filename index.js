@@ -34,7 +34,9 @@ const defaultConfig = {
   dest: 'build',
   source: 'slides.md',
   css: defaultCss,
+  cssFiles: [],
   script: '',
+  scriptFiles: [],
   remarkConfig: {},
   remarkPath: join(__dirname, 'vendor', 'remark.js'),
   assets: ['assets']
@@ -53,7 +55,9 @@ on('config', config => {
     .pipe(layout1.nunjucks(layoutFilename, {
       data: {
         css: config.css,
+        cssFiles: config.cssFiles.map(url => `<link href="${url}" rel="stylesheet" />`).join('\n'),
         script: config.script,
+        scriptFiles: config.scriptFiles.map(url => `<script src="${url}"></script>`).join('\n'),
         title: config.title,
         remarkConfig: config.remarkConfig
       }
@@ -61,6 +65,21 @@ on('config', config => {
 
   asset(config.remarkPath)
     .pipe(rename('remark.js'))
+
+  config.cssFiles.forEach(src => {
+    if (/^http/.test(src)) {
+      return
+    }
+    asset(src).base(process.cwd())
+  })
+
+  config.scriptFiles.forEach(src => {
+    if (/^http/.test(src)) {
+      return
+    }
+    asset(src).base(process.cwd())
+  })
+
 
   config.assets.forEach(src => {
     asset(join(src, '**/*.*')).base(process.cwd())
