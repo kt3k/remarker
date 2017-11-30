@@ -13,7 +13,7 @@
     <script src="remark.js"></script>
     {{ scriptFiles | safe }}
     <script>
-      remark.create({{ remarkConfig | dump | safe }})
+      window.slideshow = remark.create({{ remarkConfig | dump | safe }})
     </script>
     <script>
       {{ script | safe }}
