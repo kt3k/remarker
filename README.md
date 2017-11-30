@@ -84,9 +84,12 @@ Default settings are as follows:
 port: 6275
 dest: build
 source: slides.md
-assets: ['assets']
 title: ''
+assets: ['assets']
 css: ''
+cssFiles: []
+script: ''
+scriptFiles: []
 remarkConfig: {}
 remarkPath: moduleDir + '/vendor/remark.js'
 ```
@@ -98,11 +101,13 @@ remarkPath: moduleDir + '/vendor/remark.js'
 - `source` is the source markdown filename. Default is `slides.md`.
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
+- `cssFiles` is the list of additional stylesheet files (URL or the file path relative to your current working director) you want to add to slides' html page. If you provide file paths, these files are copied/served statically. Default is an empty array.
 
 ## Advanced options
 
 - `assets` is the list of assets directory. These directories are copied/served statically.
-- `script` is additional JavaScript appended after the remark.js. Default is an empty string.
+- `scriptFiles` is the list of additional JavaScript files (URL or the file path relative to your current working director) appended after the remark.js. If you provide file paths, these files are copied/served statically. Default is an empty array.
+- `script` is additional JavaScript code appended after the remark.js and `scriptFiles`. Default is an empty string.
 - `remarkConfig` is the config object which is passed to remark.create(options). Default is an empty object.
   - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
 - `remarkPath` is the path to remark.js. This replaces the original remark.js with specified one.

@@ -3,6 +3,7 @@
   <head>
     <title>{{ title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    {{ cssFiles | safe }}
     <style type="text/css">
       {{ css | safe }}
     </style>
@@ -10,6 +11,7 @@
   <body>
     <textarea id="source">{{ file.contents | safe }}</textarea>
     <script src="remark.js"></script>
+    {{ scriptFiles | safe }}
     <script>
       remark.create({{ remarkConfig | dump | safe }})
     </script>
