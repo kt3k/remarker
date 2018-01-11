@@ -47,13 +47,14 @@ name('remarker')
 debugPagePath('__remarker__')
 helpMessage(`
 Usage:
-  remarker [options] serve       Serves all the assets at localhost
-  remarker [options] build       Builds all the assets to the dest
+  remarker [options] serve      Serves all the assets at localhost
+  remarker [options] build      Builds all the assets to the dest
 
 Options:
-  -h, --help                     Shows the help message and exits
-  -v, --version                  Shows the version number and exits
-  -s, --source <path>            Specifies the slide's markdown file
+  -h, --help                    Shows the help message and exits
+  -v, --version                 Shows the version number and exits
+  -s, --source <path>           Specifies the slide's markdown file.
+                                This overrides 'source' property of the config file.
 
 See https://npm.im/remarker for more details.
 `)

@@ -112,6 +112,20 @@ remarkPath: moduleDir + '/vendor/remark.js'
   - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
 - `remarkPath` is the path to remark.js. This replaces the original remark.js with specified one.
 
+## CLI Usage
+
+```
+Usage:
+  remarker [options] serve      Serves all the assets at localhost
+  remarker [options] build      Builds all the assets to the dest
+
+Options:
+  -h, --help                    Shows the help message and exits
+  -v, --version                 Shows the version number and exits
+  -s, --source <path>           Specifies the slide's markdown file.
+                                This overrides 'source' property of the config file.
+```
+
 # Examples
 
 - [simple example](https://github.com/kt3k/remarker/tree/master/examples/simple)
