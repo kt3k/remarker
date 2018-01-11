@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-const { asset, dest, name, on, port, debugPagePath } = require('berber')
+const { asset, dest, name, on, port, debugPagePath, helpMessage } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
 const { readFileSync } = require('fs')
 const { join } = require('path')
+const minimisted = require('minimisted')
 
 require('require-yaml')
 
@@ -43,9 +44,22 @@ const defaultConfig = {
 }
 
 name('remarker')
+debugPagePath('__remarker__')
+helpMessage(`
+Usage:
+  remarker [options] serve       Serves all the assets at localhost
+  remarker [options] build       Builds all the assets to the dest
 
-on('config', config => {
-  config = Object.assign({}, defaultConfig, config)
+Options:
+  -h, --help                     Shows the help message and exits
+  -v, --version                  Shows the version number and exits
+  -s, --source <path>            Specifies the slide's markdown file
+
+See https://npm.im/remarker for more details.
+`)
+
+on('config', config => minimisted(argv => {
+  config = Object.assign({}, defaultConfig, config, argv)
 
   port(config.port)
   dest(config.dest)
@@ -84,6 +98,9 @@ on('config', config => {
   config.assets.forEach(src => {
     asset(join(src, '**/*.*')).base(process.cwd())
   })
+}), {
+  string: ['source'],
+  alias: {
+    s: 'source'
+  }
 })
-
-debugPagePath('__remarker__')

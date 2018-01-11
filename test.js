@@ -45,4 +45,14 @@ describe('remarker', () => {
 
     expect(readFileSync(join(__dirname, 'examples/replace-remark/build/index.html')).toString()).to.include('console.log("injected script")')
   })
+
+  describe('--source option', () => {
+    it('specifies the slide\'s markdown path', () => {
+      execSync('node ../../index.js build --source my-slides.md', {
+        cwd: join(__dirname, 'examples/simple')
+      })
+
+      expect(readFileSync(join(__dirname, 'examples/simple/build/index.html')).toString()).to.include('This is my-slides.md')
+    })
+  })
 })
