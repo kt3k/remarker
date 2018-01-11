@@ -1,4 +1,4 @@
-# remarker v1.5.1
+# remarker v1.6.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -146,6 +146,7 @@ The directory name of `assets` can be configured in `remarker.yml`. See the conf
 
 # History
 
+- 2018-01-12   v1.6.0   Add --source cli option.
 - 2017-08-05   v1.3.0   Add remarkConfig prop.
 
 # License
