@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { asset, dest, name, on, port, debugPagePath, helpMessage } = require('berber')
+const { asset, dest, name, on, port, debugPagePath, helpMessage, loggerTitle } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
 const { readFileSync } = require('fs')
@@ -45,6 +45,7 @@ const defaultConfig = {
 
 name('remarker')
 debugPagePath('__remarker__')
+loggerTitle('remarker')
 helpMessage(`
 Usage:
   remarker [options] serve      Serves all the assets at localhost
