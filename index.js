@@ -99,9 +99,9 @@ on('config', config => minimisted(argv => {
   config.assets.forEach(src => {
     asset(join(src, '**/*.*')).base(process.cwd())
   })
-}), {
+}, {
   string: ['source'],
   alias: {
     s: 'source'
   }
-})
+}))
