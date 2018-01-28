@@ -154,4 +154,8 @@ The directory name of `assets` can be configured in `remarker.yml`. See the conf
 
 MIT
 
+# Star History
+
+[![Stargazers over time](https://starcharts.herokuapp.com/kt3k/remarker.svg)](https://starcharts.herokuapp.com/kt3k/remarker)
+
 [remark]: https://github.com/gnab/remark
