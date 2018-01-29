@@ -3,7 +3,7 @@
 const { asset, dest, name, on, port, debugPagePath, helpMessage, loggerTitle } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
-const { readFileSync } = require('fs')
+const { readFileSync, existsSync, statSync } = require('fs')
 const { join } = require('path')
 const minimisted = require('minimisted')
 
@@ -29,6 +29,8 @@ const defaultCss = `
   }
 `
 
+const defaultAssetsPath = 'assets'
+
 const defaultConfig = {
   title: '',
   port: 6275,
@@ -40,7 +42,7 @@ const defaultConfig = {
   scriptFiles: [],
   remarkConfig: {},
   remarkPath: join(__dirname, 'vendor', 'remark.js'),
-  assets: ['assets']
+  assets: [defaultAssetsPath]
 }
 
 name('remarker')
@@ -98,7 +100,21 @@ on('config', config => minimisted(argv => {
 
 
   config.assets.forEach(src => {
-    asset(join(src, '**/*.*')).base(process.cwd())
+    if (existsSync(src)) {
+      const stat = statSync(src)
+
+      if (stat.isDirectory()) {
+        asset(join(src, '**/*.*')).base(process.cwd())
+      } else if (stat.isFile()) {
+        asset(src).base(process.cwd())
+      } else {
+        console.log(`Warning: asset entry '${src}' has unknown type, skipping this entry`)
+      }
+    } else if (src === defaultAssetsPath) {
+      // do nothing, ignore silently
+    } else {
+      console.log(`Warning: asset entry '${src}' not found, skipping this entry`)
+    }
   })
 }, {
   string: ['source'],
