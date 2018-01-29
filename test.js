@@ -1,7 +1,7 @@
 const { before, after, describe, it } = require('kocha')
 const { expect } = require('chai')
 const { execSync } = require('child_process')
-const { readFileSync } = require('fs')
+const { readFileSync, existsSync } = require('fs')
 const { join } = require('path')
 const rimraf = require('rimraf')
 
@@ -59,6 +59,16 @@ describe('remarker', () => {
       })
 
       expect(readFileSync(join(__dirname, 'examples/simple/build/index.html')).toString()).to.include('This is my-slides-2.md')
+    })
+  })
+
+  describe('file asset entry', () => {
+    it('builds the given file to build dir', () => {
+      execSync('node ../../index.js build', {
+        cwd: join(__dirname, 'examples/favicon')
+      })
+
+      expect(existsSync('examples/favicon/build/favicon.ico')).to.equal(true)
     })
   })
 })
