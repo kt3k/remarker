@@ -62,6 +62,16 @@ describe('remarker', () => {
     })
   })
 
+  describe('contents in assets directory', () => {
+    it('are copied to build directory', () => {
+      execSync('node ../../index.js build', {
+        cwd: join(__dirname, 'examples/has-assets')
+      })
+
+      expect(existsSync('examples/has-assets/build/assets/degu.png')).to.equal(true)
+    })
+  })
+
   describe('file asset entry', () => {
     it('builds the given file to build dir', () => {
       execSync('node ../../index.js build', {
