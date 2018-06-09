@@ -1,4 +1,4 @@
-# remarker v1.7.1
+# remarker v1.8.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -146,10 +146,11 @@ The directory name of `assets` can be configured in `remarker.yml`. See the conf
 
 # History
 
-- 2018-01-29   v1.7.0   Enable file asset (#8).
-- 2018-01-13   v1.6.1   Fix -s option.
-- 2018-01-12   v1.6.0   Add --source cli option.
-- 2017-08-05   v1.3.0   Add remarkConfig prop.
+- 2018-06-10   v1.8.0   Added livereloading feature.
+- 2018-01-29   v1.7.0   Enabled file asset (#8).
+- 2018-01-13   v1.6.1   Fixed -s option.
+- 2018-01-12   v1.6.0   Added --source cli option.
+- 2017-08-05   v1.3.0   Added remarkConfig prop.
 
 # License
 
