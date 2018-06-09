@@ -1,0 +1,8 @@
+cssFiles:
+  - foo.css
+  - bar.css
+  - https://example.com/style.css
+scriptFiles:
+  - baz.js
+  - qux.js
+  - https://example.com/script.js

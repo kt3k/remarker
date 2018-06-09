@@ -14,7 +14,8 @@ const examples = {
   replaceRemark: join(__dirname, 'examples/replace-remark'),
   hasAssets: join(__dirname, 'examples/has-assets'),
   favicon: join(__dirname, 'examples/favicon'),
-  remark: join(__dirname, 'examples/remark')
+  remark: join(__dirname, 'examples/remark'),
+  addScripts: join(__dirname, 'examples/add-scripts'),
 }
 
 const processes = []
@@ -83,6 +84,28 @@ describe('remarker', () => {
     })
   })
 
+  describe('scriptFiles option', () => {
+    it('adds script files', () => {
+      execSync('node ../../index.js build', { cwd: examples.addScripts })
+
+      const html = readFileSync(join(examples.addScripts, 'build', 'index.html')).toString()
+
+      expect(html).to.include('baz.js')
+      expect(html).to.include('qux.js')
+    })
+  })
+
+  describe('cssFiles option', () => {
+    it('adds css files', () => {
+      execSync('node ../../index.js build', { cwd: examples.addScripts })
+
+      const html = readFileSync(join(examples.addScripts, 'build', 'index.html')).toString()
+
+      expect(html).to.include('foo.css')
+      expect(html).to.include('bar.css')
+    })
+  })
+
   context('when serving', () => {
     it('starts livereload server by default', done => {
       timeout(8000)
@@ -111,12 +134,14 @@ describe('remarker', () => {
 
       processes.push(child)
 
-      setTimeout(async () => {
-        const res = await axios.get('http://localhost:6275/livereload.js')
+      setTimeout(() => {
+        axios.get('http://localhost:6275/index.html')
+        axios.get('http://localhost:6275/livereload.js').then(res => {
 
-        expect(res.data).to.include('livereload')
+          expect(res.data).to.include('livereload')
 
-        done()
+          done()
+        })
       }, 2000)
     })
   })
