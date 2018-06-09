@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-{{ checksum "package.json" }}
+      - run: npm i
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-{{ checksum "package.json" }}
+      - run: mkfifo examples/remark/fifo-asset
+      - run: npm test
+      - run: npm run codecov

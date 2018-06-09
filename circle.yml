@@ -1,8 +1,0 @@
-machine:
-  node:
-    version: 6
-test:
-  pre:
-    - mkfifo examples/remark/fifo-asset
-  post:
-    - npm run codecov
