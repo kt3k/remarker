@@ -92,6 +92,8 @@ script: ''
 scriptFiles: []
 remarkConfig: {}
 remarkPath: moduleDir + '/vendor/remark.js'
+livereload: true
+livereloadPort: 35729
 ```
 
 ## Basic options
@@ -111,6 +113,8 @@ remarkPath: moduleDir + '/vendor/remark.js'
 - `remarkConfig` is the config object which is passed to remark.create(options). Default is an empty object.
   - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
 - `remarkPath` is the path to remark.js. This replaces the original remark.js with specified one.
+- `livereload` is the flag to toggle livereloading feature. Default is true.
+- `livereloadPort` is the port number for livereloading websocket connection. Default is 35729.
 
 ## CLI Usage
 
