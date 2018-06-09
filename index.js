@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { asset, dest, name, on, port, debugPagePath, helpMessage, loggerTitle } = require('berber')
+const { asset, dest, name, on, port, debugPagePath, helpMessage, loggerTitle, addMiddleware } = require('berber')
 const layout1 = require('layout1')
 const rename = require('gulp-rename')
 const { readFileSync, existsSync, statSync } = require('fs')
@@ -34,6 +34,8 @@ const defaultAssetsPath = 'assets'
 const defaultConfig = {
   title: '',
   port: 6275,
+  livereload: true,
+  livereloadPort: 35729,
   dest: 'build',
   source: 'slides.md',
   css: defaultCss,
@@ -63,12 +65,14 @@ See https://npm.im/remarker for more details.
 `)
 
 on('config', config => minimisted(argv => {
+  const isBuild = argv._[0] === 'build'
   config = Object.assign({}, defaultConfig, config, argv)
 
   port(config.port)
   dest(config.dest)
 
-  asset(config.source)
+
+  const slidePipeline = asset(config.source)
     .pipe(rename({ basename: 'index', extname: '.html' }))
     .pipe(layout1.nunjucks(layoutFilename, {
       data: {
@@ -77,9 +81,32 @@ on('config', config => minimisted(argv => {
         script: config.script,
         scriptFiles: config.scriptFiles.map(url => `<script src="${url}"></script>`).join('\n'),
         title: config.title,
-        remarkConfig: config.remarkConfig
+        remarkConfig: config.remarkConfig,
+        livereloadPort: config.livereloadPort
       }
     }))
+
+  // livereload settings
+  if (config.livereload && !isBuild) {
+    const livereload = require('connect-livereload')
+    const gulplivereload = require('gulp-livereload')
+    const livereloadScript = require('fs').readFileSync(join(__dirname, 'vendor', 'livereload.js'))
+
+    const port = config.livereloadPort
+
+    addMiddleware(() => livereload({ port, src: '/livereload.js' }))
+
+    addMiddleware(() => (req, res, next) => {
+      if (require('url').parse(req.url).pathname === '/livereload.js') {
+        res.setHeader('Content-Type', 'text/javascript')
+        res.end(livereloadScript)
+      }
+      next()
+    })
+
+    gulplivereload.listen({ port })
+    slidePipeline.pipe(gulplivereload({ port }))
+  }
 
   asset(config.remarkPath)
     .pipe(rename('remark.js'))

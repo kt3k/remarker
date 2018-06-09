@@ -17,6 +17,10 @@
     </script>
     <script>
       {{ script | safe }}
+      ;window.LiveReloadOptions = {
+        host: 'localhost',
+        port: '{{ livereloadPort }}'
+      };
     </script>
   </body>
 </html>
