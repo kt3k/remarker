@@ -8,7 +8,8 @@
     "lint": "standard",
     "test": "kocha test",
     "cov": "nyc --reporter=lcov --reporter=text-summary npm test",
-    "codecov": "npm run cov && codecov"
+    "codecov": "npm run cov && codecov",
+    "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -40,12 +41,22 @@
     "axios": "^0.18.0",
     "chai": "^4.1.0",
     "codecov": "^2.2.0",
+    "husky": "^0.14.3",
     "kocha": "^1.8.0",
+    "lint-staged": "^7.1.3",
     "nyc": "^13.0.0",
+    "prettier": "^1.13.5",
     "remark": "https://github.com/gnab/remark.git#v0.14.0",
     "rimraf": "^2.6.1",
     "standard": "^10.0.2",
     "touch": "^3.1.0",
     "ws": "^5.2.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --no-semi --single-quote",
+      "standard --fix",
+      "git add"
+    ]
   }
 }
