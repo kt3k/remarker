@@ -3,7 +3,9 @@
   <head>
     <title>{{ title }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    {{ cssFiles | safe }}
+    {% for file in cssFiles %}
+    <link rel="stylesheet" href="{{ file }}" />
+    {% endfor %}
     <style type="text/css">
       {{ css | safe }}
     </style>
@@ -11,7 +13,9 @@
   <body>
     <textarea id="source">{{ file.contents | safe }}</textarea>
     <script src="remark.js"></script>
-    {{ scriptFiles | safe }}
+    {% for file in scriptFiles %}
+    <script src="{{ file }}"></script>
+    {% endfor %}
     <script>
       window.slideshow = remark.create({{ remarkConfig | dump | safe }})
     </script>

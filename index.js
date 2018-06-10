@@ -60,13 +60,9 @@ const onConfig = (config, argv) => {
       layout1.nunjucks(layoutFilename, {
         data: {
           css: config.css,
-          cssFiles: config.cssFiles
-            .map(url => `<link href="${url}" rel="stylesheet" />`)
-            .join('\n'),
+          cssFiles: config.cssFiles,
           script: config.script,
-          scriptFiles: config.scriptFiles
-            .map(url => `<script src="${url}"></script>`)
-            .join('\n'),
+          scriptFiles: config.scriptFiles,
           title: config.title,
           remarkConfig: config.remarkConfig,
           livereloadPort: config.livereloadPort
