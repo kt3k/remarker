@@ -109,14 +109,15 @@ const onConfig = (config, argv) => {
 }
 
 const livereloadScriptMiddleware = (req, res, next) => {
-  const livereloadScript = read('vendor/livereload.js')
-
-  if (require('url').parse(req.url).pathname === '/livereload.js') {
-    res.setHeader('Content-Type', 'text/javascript')
-    res.end(livereloadScript)
+  if (require('url').parse(req.url).pathname !== '/livereload.js') {
+    next()
+    return
   }
 
-  next()
+  const livereloadScript = read('vendor/livereload.js')
+
+  res.setHeader('Content-Type', 'text/javascript')
+  res.end(livereloadScript)
 }
 
 const onLivereloadConfig = (slidePipeline, config) => {
