@@ -19,25 +19,11 @@ const minimisted = require('minimisted')
 
 require('require-yaml')
 
+const read = path => readFileSync(join(__dirname, path)).toString()
+
 const layoutFilename = join(__dirname, 'layout.njk')
 
-const defaultCss = `
-  body {
-    font-family: 'Avenir Next', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'メイリオ', sans-serif;
-  }
-  h1, h2, h3 {
-    font-weight: bold;
-  }
-  .remark-code,
-  .remark-inline-code {
-    font-family: 'Menlo', 'Monaco', 'Courier new', monospace;
-  }
-
-  .remark-slide-content.inverse {
-    color: #f3f3f3;
-    background-color: #272822;
-  }
-`
+const defaultCss = read('assets/default.css')
 
 const defaultAssetsPath = 'assets'
 
@@ -60,24 +46,11 @@ const defaultConfig = {
 name('remarker')
 debugPagePath('__remarker__')
 loggerTitle('remarker')
-helpMessage(`
-Usage:
-  remarker [options] serve      Serves all the assets at localhost
-  remarker [options] build      Builds all the assets to the dest
-
-Options:
-  -h, --help                    Shows the help message and exits
-  -v, --version                 Shows the version number and exits
-  -s, --source <path>           Specifies the slide's markdown file.
-                                This overrides 'source' property of the config file.
-
-See https://npm.im/remarker for more details.
-`)
+helpMessage(read('assets/help-message.txt'))
 
 on('config', config =>
   minimisted(
     argv => {
-      const isBuild = argv._[0] === 'build'
       config = Object.assign({}, defaultConfig, config, argv)
 
       port(config.port)
@@ -104,27 +77,29 @@ on('config', config =>
         )
 
       // livereload settings
-      if (config.livereload && !isBuild) {
-        const livereload = require('connect-livereload')
-        const gulplivereload = require('gulp-livereload')
-        const livereloadScript = readFileSync(
-          join(__dirname, 'vendor', 'livereload.js')
-        )
+      if (config.livereload) {
+        on('serve', () => {
+          const livereload = require('connect-livereload')
+          const gulplivereload = require('gulp-livereload')
+          const livereloadScript = readFileSync(
+            join(__dirname, 'vendor', 'livereload.js')
+          )
 
-        const port = config.livereloadPort
+          const port = config.livereloadPort
 
-        addMiddleware(() => livereload({ port, src: '/livereload.js' }))
+          addMiddleware(() => livereload({ port, src: '/livereload.js' }))
 
-        addMiddleware(() => (req, res, next) => {
-          if (require('url').parse(req.url).pathname === '/livereload.js') {
-            res.setHeader('Content-Type', 'text/javascript')
-            res.end(livereloadScript)
-          }
-          next()
+          addMiddleware(() => (req, res, next) => {
+            if (require('url').parse(req.url).pathname === '/livereload.js') {
+              res.setHeader('Content-Type', 'text/javascript')
+              res.end(livereloadScript)
+            }
+            next()
+          })
+
+          gulplivereload.listen({ port })
+          slidePipeline.pipe(gulplivereload({ port }))
         })
-
-        gulplivereload.listen({ port })
-        slidePipeline.pipe(gulplivereload({ port }))
       }
 
       asset(config.remarkPath).pipe(rename('remark.js'))
