@@ -77,17 +77,11 @@ const onConfig = (config, argv) => {
 
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  config.cssFiles.forEach(src => {
-    if (/^http/.test(src)) {
-      return
-    }
+  config.cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
     asset(src).base(process.cwd())
   })
 
-  config.scriptFiles.forEach(src => {
-    if (/^http/.test(src)) {
-      return
-    }
+  config.scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
     asset(src).base(process.cwd())
   })
 
@@ -114,24 +108,26 @@ const onConfig = (config, argv) => {
   })
 }
 
+const livereloadScriptMiddleware = (req, res, next) => {
+  const livereloadScript = read('vendor/livereload.js')
+
+  if (require('url').parse(req.url).pathname === '/livereload.js') {
+    res.setHeader('Content-Type', 'text/javascript')
+    res.end(livereloadScript)
+  }
+
+  next()
+}
+
 const onLivereloadConfig = (slidePipeline, config) => {
   const livereload = require('connect-livereload')
   const gulplivereload = require('gulp-livereload')
-  const livereloadScript = readFileSync(
-    join(__dirname, 'vendor', 'livereload.js')
-  )
 
   const port = config.livereloadPort
 
   addMiddleware(() => livereload({ port, src: '/livereload.js' }))
 
-  addMiddleware(() => (req, res, next) => {
-    if (require('url').parse(req.url).pathname === '/livereload.js') {
-      res.setHeader('Content-Type', 'text/javascript')
-      res.end(livereloadScript)
-    }
-    next()
-  })
+  addMiddleware(() => livereloadScriptMiddleware)
 
   gulplivereload.listen({ port })
   slidePipeline.pipe(gulplivereload({ port }))
