@@ -16,6 +16,8 @@ const rename = require('gulp-rename')
 const { readFileSync, existsSync, statSync } = require('fs')
 const { join } = require('path')
 const minimisted = require('minimisted')
+const remark = require('gulp-remark')
+const emoji = require('remark-emoji')
 
 require('require-yaml')
 
@@ -54,15 +56,23 @@ const onConfig = (config, argv) => {
   port(config.port)
   dest(config.dest)
 
+  const cssFiles = !Array.isArray(config.cssFiles)
+    ? Array(config.cssFiles)
+    : config.cssFiles
+  const scriptFiles = !Array.isArray(config.scriptFiles)
+    ? Array(config.scriptFiles)
+    : config.scriptFiles
+
   const slidePipeline = asset(config.source)
+    .pipe(remark().use(emoji))
     .pipe(rename({ basename: 'index', extname: '.html' }))
     .pipe(
       layout1.nunjucks(layoutFilename, {
         data: {
           css: config.css,
-          cssFiles: config.cssFiles,
+          cssFiles: cssFiles,
           script: config.script,
-          scriptFiles: config.scriptFiles,
+          scriptFiles: scriptFiles,
           title: config.title,
           remarkConfig: config.remarkConfig,
           livereloadPort: config.livereloadPort
@@ -77,11 +87,11 @@ const onConfig = (config, argv) => {
 
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  config.cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
+  cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
     asset(src).base(process.cwd())
   })
 
-  config.scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
+  scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
     asset(src).base(process.cwd())
   })
 
