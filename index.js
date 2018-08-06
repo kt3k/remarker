@@ -16,10 +16,17 @@ const rename = require('gulp-rename')
 const { readFileSync, existsSync, statSync } = require('fs')
 const { join } = require('path')
 const minimisted = require('minimisted')
-const remark = require('gulp-remark')
-const emoji = require('remark-emoji')
+
+var transform = require('vinyl-transform')
+var map = require('map-stream')
+var emoji = require('node-emoji')
 
 require('require-yaml')
+
+const emojify = () =>
+  transform(filename =>
+    map((chunk, next) => next(null, emoji.emojify(chunk.toString())))
+  )
 
 const read = path => readFileSync(join(__dirname, path)).toString()
 
@@ -64,7 +71,7 @@ const onConfig = (config, argv) => {
     : config.scriptFiles
 
   const slidePipeline = asset(config.source)
-    .pipe(remark().use(emoji))
+    .pipe(emojify())
     .pipe(rename({ basename: 'index', extname: '.html' }))
     .pipe(
       layout1.nunjucks(layoutFilename, {
