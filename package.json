@@ -4,6 +4,9 @@
   "description": "Remark cli",
   "main": "index.js",
   "bin": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "lint": "standard",
     "test": "kocha test",
