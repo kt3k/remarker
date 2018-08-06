@@ -37,6 +37,17 @@ describe('remarker', () => {
     ).to.include('My Awesome Presentation')
   })
 
+  it('replaces :emoji: notations', () => {
+    execSync('node ../../index.js build', { cwd: examples.simple })
+
+    const result = readFileSync(
+      join(examples.simple, 'build', 'index.html')
+    ).toString()
+
+    expect(result).to.include('🏊')
+    expect(result).to.not.include(':swimmer:')
+  })
+
   it("replaces stylesheets by remarker.yml's css property", () => {
     execSync('node ../../index.js build', { cwd: examples.remark })
 
