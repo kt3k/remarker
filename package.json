@@ -6,7 +6,8 @@
   "bin": "index.js",
   "files": [
     "index.js",
-    "assets"
+    "assets",
+    "vendor"
   ],
   "scripts": {
     "lint": "standard",
