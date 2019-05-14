@@ -1,4 +1,4 @@
-# remarker v1.9.4
+# remarker v1.10.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -152,7 +152,8 @@ The directory name of `assets` can be configured in `remarker.yml`. See the conf
 
 # History
 
-- 2018-08-06   v1.9.0   Add :emoji: transformation. Modify `cssFiles` option handling (#11).
+- 2019-05-14   v1.10.0  Added `--dest`, `--out`, and `--port` CLI options.
+- 2018-08-06   v1.9.0   Added :emoji: transformation. Modify `cssFiles` option handling (#11).
 - 2018-06-10   v1.8.1   Fixed help and version options.
 - 2018-06-10   v1.8.0   Added livereloading feature.
 - 2018-01-29   v1.7.0   Enabled file asset (#8).
