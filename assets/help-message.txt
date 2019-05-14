@@ -8,5 +8,8 @@ Options:
   -v, --version                 Shows the version number and exits
   -s, --source <path>           Specifies the slide's markdown file.
                                 This overrides 'source' property of the config file.
+  -o, --out <filename>          The output filename of the slides. Default is index.html.
+  -d, --dest <path>             The destination directory for built slides.
+  -p, --port <number>           The port number for dev server.
 
 See https://npm.im/remarker for more details.

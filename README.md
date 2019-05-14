@@ -83,6 +83,7 @@ Default settings are as follows:
 ```yml
 port: 6275
 dest: build
+out: index.html
 source: slides.md
 title: ''
 assets: ['assets']
@@ -100,6 +101,7 @@ livereloadPort: 35729
 
 - `port` is the port number of remarker server. Default is `6275`.
 - `dest` is the destination of `remarker build` command. Default is `build`
+- `out` is the filename of the result html page. Default is `index.html`
 - `source` is the source markdown filename. Default is `slides.md`.
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.

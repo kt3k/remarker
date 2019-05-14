@@ -25,7 +25,7 @@ before(done => {
 
 after(done => {
   processes.forEach(child => child.kill())
-  rimraf('examples/*/build', done)
+  rimraf('examples/*/{build,build2}', done)
 })
 
 describe('remarker', () => {
@@ -97,6 +97,30 @@ describe('remarker', () => {
       expect(
         readFileSync(join(examples.simple, 'build', 'index.html')).toString()
       ).to.include('This is my-slides-2.md')
+    })
+  })
+
+  describe('-d, --dest option', () => {
+    it('specifies destination directory', () => {
+      execSync('node ../../index.js build --dest build2', {
+        cwd: examples.simple
+      })
+
+      expect(
+        readFileSync(join(examples.simple, 'build2', 'index.html')).toString()
+      ).to.include('My Awesome Presentation')
+    })
+  })
+
+  describe('-o, --out option', () => {
+    it('specifies destination directory', () => {
+      execSync('node ../../index.js build --out slides.html', {
+        cwd: examples.simple
+      })
+
+      expect(
+        readFileSync(join(examples.simple, 'build', 'slides.html')).toString()
+      ).to.include('My Awesome Presentation')
     })
   })
 

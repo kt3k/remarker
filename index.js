@@ -37,19 +37,20 @@ const defaultCss = read('assets/default.css')
 const defaultAssetsPath = 'assets'
 
 const defaultConfig = {
-  title: '',
-  port: 6275,
+  title: '', // The page title of the result html
+  port: 6275, // The port number of dev server
   livereload: true,
   livereloadPort: 35729,
-  dest: 'build',
-  source: 'slides.md',
-  css: defaultCss,
-  cssFiles: [],
-  script: '',
-  scriptFiles: [],
-  remarkConfig: {},
-  remarkPath: join(__dirname, 'vendor', 'remark.js'),
-  assets: [defaultAssetsPath]
+  dest: 'build', // The destination directory of built assets
+  out: 'index.html', // The result html filename of the slides
+  source: 'slides.md', // The source of the slides
+  css: defaultCss, // The additional css for the slides
+  cssFiles: [], // The additional css files
+  script: '', // The additional script for the slides
+  scriptFiles: [], // The additional script files
+  remarkConfig: {}, // The config object passed to remark
+  remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
+  assets: [defaultAssetsPath] // The asset paths
 }
 
 name('remarker')
@@ -72,7 +73,7 @@ const onConfig = (config, argv) => {
 
   const slidePipeline = asset(config.source)
     .pipe(emojify())
-    .pipe(rename({ basename: 'index', extname: '.html' }))
+    .pipe(rename(config.out))
     .pipe(
       layout1.nunjucks(layoutFilename, {
         data: {
@@ -153,9 +154,12 @@ const onLivereloadConfig = (slidePipeline, config) => {
 
 on('config', config =>
   minimisted(argv => onConfig(config, argv), {
-    string: ['source'],
+    string: ['source', 'out', 'dest', 'port'],
     alias: {
-      s: 'source'
+      s: 'source',
+      o: 'out',
+      p: 'port',
+      d: 'dest'
     }
   })
 )
