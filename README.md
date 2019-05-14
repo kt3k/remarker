@@ -150,6 +150,10 @@ Put the images under `./assets` directory and they are automatically served/copi
 
 The directory name of `assets` can be configured in `remarker.yml`. See the configuration section for details.
 
+# Who uses this tool?
+
+See [this search](https://github.com/search?q=filename%3Aremarker.yml).
+
 # History
 
 - 2019-05-14   v1.10.0  Added `--dest`, `--out`, and `--port` CLI options.
