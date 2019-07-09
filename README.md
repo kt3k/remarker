@@ -140,7 +140,7 @@ Options:
 
 # Motivation of `remarker`
 
-`remark` is a great presentation tool and you can write your slide's contents in markdown. The problem is when you simply use ramark, you need to maintain the html, css and scripts as well as markdown. If you care the details of design and style of the slides, that's fine. However if you don't care the design of the slides that much and want to focus only on the contents, then the settings of css, html, scripts seem quite messy. `remarker` solves this problem. `remarker` separates the contents (= markdown) from the settings (css, html, scripts). So you can only focus on and keep maintaining the contents of the slides and let `remarker` do the rest of the work. This is easier than using `remark` directly.
+`remark` is a great presentation tool and you can write your slide's contents in markdown. The problem is when you simply use remark, you need to maintain the html, css and scripts as well as markdown. If you care the details of design and style of the slides, that's fine. However if you don't care the design of the slides that much and want to focus only on the contents, then the settings of css, html, scripts seem quite messy. `remarker` solves this problem. `remarker` separates the contents (= markdown) from the settings (css, html, scripts). So you can only focus on and keep maintaining the contents of the slides and let `remarker` do the rest of the work. This is easier than using `remark` directly.
 
 # How-tos
 
