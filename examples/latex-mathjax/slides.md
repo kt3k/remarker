@@ -5,7 +5,7 @@ Michael Liebling
 
 26 September 2019
 
-This is an example remark presentation that demonstrates the use of math and the corresponding remarker configuration.
+This is an example [Remark](https://github.com/gnab/remark) presentation that demonstrates the configuration of [Remarker](https://www.npmjs.com/package/remarker) for the use of LaTeX math via [MathJax](https://www.mathjax.org).
 
 
 ---
