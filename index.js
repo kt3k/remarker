@@ -16,6 +16,7 @@ const rename = require('gulp-rename')
 const { readFileSync, existsSync, statSync } = require('fs')
 const { join } = require('path')
 const minimisted = require('minimisted')
+const openurl = require('openurl')
 
 var transform = require('vinyl-transform')
 var map = require('map-stream')
@@ -90,18 +91,25 @@ const onConfig = (config, argv) => {
 
   // livereload settings
   if (config.livereload) {
-    on('serve', () => onLivereloadConfig(slidePipeline, config))
+    on('serve', () => {
+      openurl.open('http://localhost:' + config.port)
+      onLivereloadConfig(slidePipeline, config)
+    })
   }
 
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  cssFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
-  scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  scriptFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
   config.assets.forEach(src => {
     if (existsSync(src)) {
