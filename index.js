@@ -51,7 +51,8 @@ const defaultConfig = {
   scriptFiles: [], // The additional script files
   remarkConfig: {}, // The config object passed to remark
   remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
-  assets: [defaultAssetsPath] // The asset paths
+  assets: [defaultAssetsPath], // The asset paths,
+  openBrowser: false // open the browser to the page when the server starts
 }
 
 name('remarker')
@@ -92,7 +93,6 @@ const onConfig = (config, argv) => {
   // livereload settings
   if (config.livereload) {
     on('serve', () => {
-      openurl.open('http://localhost:' + config.port)
       onLivereloadConfig(slidePipeline, config)
     })
   }
@@ -132,6 +132,13 @@ const onConfig = (config, argv) => {
       )
     }
   })
+
+  // openBrowser will be an empty string if someone just puts the "-b"
+  // flag. Checking for "not false" allows users to avoid having to
+  // provide a value like "-b=true"
+  if (config.openBrowser !== false) {
+    openurl.open('http://localhost:' + config.port)
+  }
 }
 
 const livereloadScriptMiddleware = (req, res, next) => {
@@ -162,12 +169,13 @@ const onLivereloadConfig = (slidePipeline, config) => {
 
 on('config', config =>
   minimisted(argv => onConfig(config, argv), {
-    string: ['source', 'out', 'dest', 'port'],
+    string: ['source', 'out', 'dest', 'port', 'openBrowser'],
     alias: {
       s: 'source',
       o: 'out',
       p: 'port',
-      d: 'dest'
+      d: 'dest',
+      b: 'openBrowser'
     }
   })
 )
