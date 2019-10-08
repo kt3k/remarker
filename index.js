@@ -52,7 +52,7 @@ const defaultConfig = {
   remarkConfig: {}, // The config object passed to remark
   remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
   assets: [defaultAssetsPath], // The asset paths,
-  openBrowser: false // open the browser to the page when the server starts
+  'open-browser': false // open the browser to the page when the server starts
 }
 
 name('remarker')
@@ -133,10 +133,7 @@ const onConfig = (config, argv) => {
     }
   })
 
-  // openBrowser will be an empty string if someone just puts the "-b"
-  // flag. Checking for "not false" allows users to avoid having to
-  // provide a value like "-b=true"
-  if (config.openBrowser !== false) {
+  if (config['open-browser']) {
     openurl.open('http://localhost:' + config.port)
   }
 }
@@ -169,13 +166,14 @@ const onLivereloadConfig = (slidePipeline, config) => {
 
 on('config', config =>
   minimisted(argv => onConfig(config, argv), {
-    string: ['source', 'out', 'dest', 'port', 'openBrowser'],
+    string: ['source', 'out', 'dest', 'port'],
+    boolean: ['open-browser'],
     alias: {
       s: 'source',
       o: 'out',
       p: 'port',
       d: 'dest',
-      b: 'openBrowser'
+      b: 'open-browser'
     }
   })
 )
