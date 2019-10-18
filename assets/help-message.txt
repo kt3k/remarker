@@ -11,5 +11,6 @@ Options:
   -o, --out <filename>          The output filename of the slides. Default is index.html.
   -d, --dest <path>             The destination directory for built slides.
   -p, --port <number>           The port number for dev server.
+  -b, --open-browser            Open the browser to the page when server starts. Default is false.
 
 See https://npm.im/remarker for more details.

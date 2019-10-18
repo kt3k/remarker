@@ -1,4 +1,4 @@
-# remarker v1.10.0
+# remarker v1.11.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -120,6 +120,11 @@ livereloadPort: 35729
 
 ## CLI Usage
 
+<!--
+  Notes: This help message is stored in //assets/help-message.txt
+  Please try keep these in sync.
+-->
+
 ```
 Usage:
   remarker [options] serve      Serves all the assets at localhost
@@ -130,7 +135,10 @@ Options:
   -v, --version                 Shows the version number and exits
   -s, --source <path>           Specifies the slide's markdown file.
                                 This overrides 'source' property of the config file.
-  -b, --open-browser            Open the browser to the page when server starts
+  -o, --out <filename>          The output filename of the slides. Default is index.html.
+  -d, --dest <path>             The destination directory for built slides.
+  -p, --port <number>           The port number for dev server.
+  -b, --open-browser            Open the browser to the page when server starts. Default is false.
 ```
 
 # Examples
@@ -157,6 +165,7 @@ See [this search](https://github.com/search?q=filename%3Aremarker.yml).
 
 # History
 
+- 2019-10-18   v1.11.0  Added `-b, --open-browser` option.
 - 2019-05-14   v1.10.0  Added `--dest`, `--out`, and `--port` CLI options.
 - 2018-08-06   v1.9.0   Added :emoji: transformation. Modify `cssFiles` option handling (#11).
 - 2018-06-10   v1.8.1   Fixed help and version options.
