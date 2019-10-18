@@ -1,6 +1,9 @@
 # npm
 /node_modules
 
+# Sorry, npm. We prefer yarn.lock
+/package-lock.json
+
 # coverage
 /coverage
 /.nyc_output
