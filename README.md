@@ -146,6 +146,8 @@ Options:
 - [simple example](https://github.com/kt3k/remarker/tree/master/examples/simple)
 - [remark slides](https://github.com/kt3k/remarker/tree/master/examples/remark)
   - The original `remark` slides in `remarker` configuration.
+- [LaTeX and Mathjax](https://github.com/kt3k/remarker/tree/master/examples/latex-mathjax)
+  - Usage of LaTeX and Mathjax in remarker. Contributed by @michaelliebling.
 
 # Motivation of `remarker`
 
