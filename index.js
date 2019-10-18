@@ -16,6 +16,7 @@ const rename = require('gulp-rename')
 const { readFileSync, existsSync, statSync } = require('fs')
 const { join } = require('path')
 const minimisted = require('minimisted')
+const openurl = require('openurl')
 
 var transform = require('vinyl-transform')
 var map = require('map-stream')
@@ -50,7 +51,8 @@ const defaultConfig = {
   scriptFiles: [], // The additional script files
   remarkConfig: {}, // The config object passed to remark
   remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
-  assets: [defaultAssetsPath] // The asset paths
+  assets: [defaultAssetsPath], // The asset paths,
+  'open-browser': false // open the browser to the page when the server starts
 }
 
 name('remarker')
@@ -90,18 +92,24 @@ const onConfig = (config, argv) => {
 
   // livereload settings
   if (config.livereload) {
-    on('serve', () => onLivereloadConfig(slidePipeline, config))
+    on('serve', () => {
+      onLivereloadConfig(slidePipeline, config)
+    })
   }
 
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  cssFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
-  scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  scriptFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
   config.assets.forEach(src => {
     if (existsSync(src)) {
@@ -124,6 +132,10 @@ const onConfig = (config, argv) => {
       )
     }
   })
+
+  if (config['open-browser']) {
+    openurl.open('http://localhost:' + config.port)
+  }
 }
 
 const livereloadScriptMiddleware = (req, res, next) => {
@@ -155,11 +167,13 @@ const onLivereloadConfig = (slidePipeline, config) => {
 on('config', config =>
   minimisted(argv => onConfig(config, argv), {
     string: ['source', 'out', 'dest', 'port'],
+    boolean: ['open-browser'],
     alias: {
       s: 'source',
       o: 'out',
       p: 'port',
-      d: 'dest'
+      d: 'dest',
+      b: 'open-browser'
     }
   })
 )

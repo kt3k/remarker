@@ -130,6 +130,7 @@ Options:
   -v, --version                 Shows the version number and exits
   -s, --source <path>           Specifies the slide's markdown file.
                                 This overrides 'source' property of the config file.
+  -b, --open-browser            Open the browser to the page when server starts
 ```
 
 # Examples
