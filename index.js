@@ -97,19 +97,22 @@ const onConfig = (config, argv) => {
     })
   }
 
+  // open browser if the option specified
+  if (config['open-browser']) {
+    on('serve', () => {
+      openurl.open('http://localhost:' + config.port)
+    })
+  }
+
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  cssFiles
-    .filter(src => !/^http/.test(src))
-    .forEach(src => {
-      asset(src).base(process.cwd())
-    })
+  cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
+    asset(src).base(process.cwd())
+  })
 
-  scriptFiles
-    .filter(src => !/^http/.test(src))
-    .forEach(src => {
-      asset(src).base(process.cwd())
-    })
+  scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
+    asset(src).base(process.cwd())
+  })
 
   config.assets.forEach(src => {
     if (existsSync(src)) {
@@ -132,10 +135,6 @@ const onConfig = (config, argv) => {
       )
     }
   })
-
-  if (config['open-browser']) {
-    openurl.open('http://localhost:' + config.port)
-  }
 }
 
 const livereloadScriptMiddleware = (req, res, next) => {
