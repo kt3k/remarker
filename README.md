@@ -76,7 +76,9 @@ remarker [build]
 
 # Configuration
 
-You can configure remarker with configuration file called `remarker.yml`:
+You can configure remarker with the configuration file `remarker.yml`:
+
+(Note: remarker.yml should be put in the current directory.)
 
 Default settings are as follows:
 
