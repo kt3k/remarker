@@ -50,7 +50,7 @@
   "devDependencies": {
     "axios": "^0.18.0",
     "chai": "^4.1.0",
-    "codecov": "^2.2.0",
+    "codecov": "^3.6.5",
     "husky": "^0.14.3",
     "kocha": "^1.8.0",
     "lint-staged": "^7.1.3",
