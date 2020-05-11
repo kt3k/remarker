@@ -73,6 +73,9 @@ const onConfig = (config, argv) => {
   const scriptFiles = !Array.isArray(config.scriptFiles)
     ? Array(config.scriptFiles)
     : config.scriptFiles
+  const scriptFilesAfterCreate = !Array.isArray(config.scriptFilesAfterCreate)
+    ? Array(config.scriptFilesAfterCreate)
+    : config.scriptFilesAfterCreate
 
   const slidePipeline = asset(config.source)
     .pipe(emojify())
@@ -86,6 +89,7 @@ const onConfig = (config, argv) => {
           scriptFiles: scriptFiles,
           title: config.title,
           remarkConfig: config.remarkConfig,
+          scriptFilesAfterCreate: scriptFilesAfterCreate,
           livereloadPort: config.livereloadPort
         }
       })
