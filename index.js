@@ -51,7 +51,8 @@ const defaultConfig = {
   scriptFiles: [], // The additional script files
   remarkConfig: {}, // The config object passed to remark
   remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
-  assets: [defaultAssetsPath], // The asset paths,
+  scriptFilesAfterCreate: [], // The additional script files loaded after remark.create
+  assets: [defaultAssetsPath], // The asset paths
   'open-browser': false // open the browser to the page when the server starts
 }
 

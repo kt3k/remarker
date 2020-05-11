@@ -19,6 +19,9 @@
     <script>
       window.slideshow = remark.create({{ remarkConfig | dump | safe }})
     </script>
+    {% for file in scriptFilesAfterCreate %}
+    <script src="{{ file }}"></script>
+    {% endfor %}
     <script>
       {{ script | safe }}
       ;window.LiveReloadOptions = {
