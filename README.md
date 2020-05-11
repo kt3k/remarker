@@ -1,4 +1,4 @@
-# remarker v1.11.2
+# remarker v1.12.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -171,6 +171,7 @@ See [this search](https://github.com/search?q=filename%3Aremarker.yml).
 
 # History
 
+- 2020-05-11   v1.12.0  Added scriptFilesAfterCreate option.
 - 2019-10-18   v1.11.1  Fix dependency.
 - 2019-10-18   v1.11.0  Added `-b, --open-browser` option.
 - 2019-05-14   v1.10.0  Added `--dest`, `--out`, and `--port` CLI options.
