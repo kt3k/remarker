@@ -48,7 +48,7 @@
     "vinyl-transform": "^1.0.0"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chai": "^4.1.0",
     "codecov": "^3.6.5",
     "husky": "^0.14.3",
