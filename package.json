@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/kt3k/remarker#readme",
   "dependencies": {
-    "berber": "^1.4.0",
+    "berber": "^1.4.1",
     "connect-livereload": "^0.6.0",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
