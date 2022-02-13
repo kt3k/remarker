@@ -78,6 +78,7 @@ const onConfig = (config, argv) => {
     : config.scriptFilesAfterCreate
 
   const slidePipeline = asset(config.source)
+    .assetOptions({ allowEmpty: true })
     .pipe(emojify())
     .pipe(rename(config.out))
     .pipe(
@@ -111,13 +112,17 @@ const onConfig = (config, argv) => {
 
   asset(config.remarkPath).pipe(rename('remark.js'))
 
-  cssFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  cssFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
-  scriptFiles.filter(src => !/^http/.test(src)).forEach(src => {
-    asset(src).base(process.cwd())
-  })
+  scriptFiles
+    .filter(src => !/^http/.test(src))
+    .forEach(src => {
+      asset(src).base(process.cwd())
+    })
 
   config.assets.forEach(src => {
     if (existsSync(src)) {
