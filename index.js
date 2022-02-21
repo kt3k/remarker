@@ -39,6 +39,13 @@ const defaultAssetsPath = 'assets'
 
 const defaultConfig = {
   title: '', // The page title of the result html
+  description: '', // The description og:description meta tag
+  ogImage: '', // The url for og:image and twitter:image
+  ogImageWidth: null, // The width of og:image
+  ogImageHeight: null, // The height of og:image
+  twitter: null, // twitter display id
+  favicon: null, // The path to favicon
+  url: null, // The url of the slides
   port: 6275, // The port number of dev server
   livereload: true,
   livereloadPort: 35729,
@@ -89,6 +96,13 @@ const onConfig = (config, argv) => {
           script: config.script,
           scriptFiles: scriptFiles,
           title: config.title,
+          description: config.description,
+          ogImage: config.ogImage,
+          ogImageWidth: config.ogImageWidth,
+          ogImageHeight: config.ogImageHeight,
+          twitter: config.twitter,
+          favicon: config.favicon,
+          url: config.url,
           remarkConfig: config.remarkConfig,
           scriptFilesAfterCreate: scriptFilesAfterCreate,
           livereloadPort: config.livereloadPort
