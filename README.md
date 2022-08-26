@@ -188,8 +188,4 @@ See [this search](https://github.com/search?q=filename%3Aremarker.yml).
 
 MIT
 
-# Star History
-
-[![Stargazers over time](https://starcharts.herokuapp.com/kt3k/remarker.svg)](https://starcharts.herokuapp.com/kt3k/remarker)
-
 [remark]: https://github.com/gnab/remark
