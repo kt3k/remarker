@@ -1,4 +1,4 @@
-# remarker v1.13.1
+# remarker v1.14.0
 
 [![ci](https://github.com/kt3k/remarker/actions/workflows/ci.yml/badge.svg)](https://github.com/kt3k/remarker/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
@@ -205,7 +205,7 @@ See [this search](https://github.com/search?q=filename%3Aremarker.yml).
 
 # History
 
-- 2022-02-13 v1.13.1 Fixed error while changing slides.md
+- 2022-02-13 v1.14.0 Fixed error while changing slides.md
 - 2020-05-11 v1.12.0 Added scriptFilesAfterCreate option.
 - 2019-10-18 v1.11.1 Fix dependency.
 - 2019-10-18 v1.11.0 Added `-b, --open-browser` option.
