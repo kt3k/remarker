@@ -1,6 +1,6 @@
 # remarker v1.13.0
 
-[![CircleCI](https://circleci.com/gh/kt3k/remarker.svg?style=svg)](https://circleci.com/gh/kt3k/remarker)
+[![ci](https://github.com/kt3k/remarker/actions/workflows/ci.yml/badge.svg)](https://github.com/kt3k/remarker/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/kt3k/remarker/branch/master/graph/badge.svg)](https://codecov.io/gh/kt3k/remarker)
 
 > [Remark][remark] cli
