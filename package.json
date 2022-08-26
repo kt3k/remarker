@@ -37,14 +37,14 @@
     "connect-livereload": "^0.6.0",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
-    "js-yaml": "^4.1.0",
     "layout1": "^1.1.0",
     "map-stream": "0.0.7",
     "minimisted": "^2.0.0",
     "node-emoji": "^1.8.1",
     "nunjucks": "^3.0.1",
     "openurl": "^1.1.1",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "yaml-hook": "^1.0.0"
   },
   "devDependencies": {
     "axios": "^0.21.1",

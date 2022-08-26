@@ -17,18 +17,10 @@ const { readFileSync, existsSync, statSync } = require("fs");
 const { join } = require("path");
 const minimisted = require("minimisted");
 const openurl = require("openurl");
-const yaml = require("js-yaml");
-
 const transform = require("vinyl-transform");
 const map = require("map-stream");
 const emoji = require("node-emoji");
-
-require.extensions[".yaml"] = require.extensions[".yml"] = function (
-  module,
-  filename,
-) {
-  module.exports = yaml.load(readFileSync(filename, "utf8"));
-};
+require("yaml-hook/register");
 
 const emojify = () =>
   transform((filename) =>
