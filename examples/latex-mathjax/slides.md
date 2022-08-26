@@ -1,44 +1,52 @@
 class: center, middle
+
 # Configuring remarker to display LaTeX via MathJax
 
 Michael Liebling
 
 26 September 2019
 
-This is an example [Remark](https://github.com/gnab/remark) presentation that demonstrates the configuration of [Remarker](https://www.npmjs.com/package/remarker) for the use of LaTeX math via [MathJax](https://www.mathjax.org).
-
+This is an example [Remark](https://github.com/gnab/remark) presentation that
+demonstrates the configuration of
+[Remarker](https://www.npmjs.com/package/remarker) for the use of LaTeX math via
+[MathJax](https://www.mathjax.org).
 
 ---
 
 # LaTeX, Mathjax, & Remark
 
-The use of MathJax with Remark is documented on a [Remark wiki page](https://github.com/gnab/remark/wiki/LaTeX-using-MathJax). Specifically, the syntax requires that LaTeX math commands be placed between a pair of backticks:
+The use of MathJax with Remark is documented on a
+[Remark wiki page](https://github.com/gnab/remark/wiki/LaTeX-using-MathJax).
+Specifically, the syntax requires that LaTeX math commands be placed between a
+pair of backticks:
 
 ```markdown
 `\(\LaTeX{}\)`
 
 1. This is an inline integral: `\(\int_a^bf(x)dx\)`
 2. More `\(x={a \over b}\)` formulae.
- 
+
 Display formula:
 
 $$e^{i\pi} + 1 = 0$$
 ```
 
-*Note:*
- this is different from the syntax used in [marked2app](https://marked2app.com/help/MathJax.html),  where LaTeX math is indicated with an extra backslash:
+_Note:_ this is different from the syntax used in
+[marked2app](https://marked2app.com/help/MathJax.html), where LaTeX math is
+indicated with an extra backslash:
 
 ```markdown
-\\(  x^2+y^2 \\)
+\\( x^2+y^2 \\)
 ```
-
 
 ---
 
 # LaTeX and Mathjax with Remarker
 
-In order for the presentation to be properly generated, one creates a `remarker.yml` configuration file (at the same level as the `slides.md` file) with the following content:
- 
+In order for the presentation to be properly generated, one creates a
+`remarker.yml` configuration file (at the same level as the `slides.md` file)
+with the following content:
+
 ```YML
 scriptFiles:
     - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured
@@ -54,8 +62,7 @@ script:
 
 1. This is an inline integral: `\(\int_a^bf(x)dx\)`
 2. More `\(x={a \over b}\)` formulae.
- 
+
 Display formula:
 
 $$e^{i\pi} + 1 = 0$$
-

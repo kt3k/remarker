@@ -5,7 +5,9 @@
 
 > [Remark][remark] cli
 
-[remark][remark] is a simple, in-browser, markdown-driven slideshow tool. `remarker` is a command line tool for building a remark-based slideshow page very easily.
+[remark][remark] is a simple, in-browser, markdown-driven slideshow tool.
+`remarker` is a command line tool for building a remark-based slideshow page
+very easily.
 
 # Usage
 
@@ -45,9 +47,12 @@ Or if you have `npx` command, then hit:
 $ npx remarker
 ```
 
-This starts a local server at port 6275 (this is configurable) and you can see your slides at [http://localhost:6275/](http://localhost:6275/).
+This starts a local server at port 6275 (this is configurable) and you can see
+your slides at [http://localhost:6275/](http://localhost:6275/).
 
-See remark's [slide](https://remarkjs.com/) and [documentation](https://github.com/gnab/remark#remark) for more details about its syntax, features etc.
+See remark's [slide](https://remarkjs.com/) and
+[documentation](https://github.com/gnab/remark#remark) for more details about
+its syntax, features etc.
 
 ## Build slides
 
@@ -57,7 +62,8 @@ You can build your slides as static page as `remarker build` command.
 $ ./node_modules/.bin/remarker build
 ```
 
-This builds your slides as html page under `build/` directory. The output directory is configurable. See the below for details.
+This builds your slides as html page under `build/` directory. The output
+directory is configurable. See the below for details.
 
 ## Installing globally
 
@@ -68,7 +74,8 @@ sudo npm i -g remarker    # from the npm repository
 sudo npm i -g .           # if there's a clone in the current directory
 ```
 
-After that, you should be able to invoke it this way from any directory in your system:
+After that, you should be able to invoke it this way from any directory in your
+system:
 
 ```bash
 remarker [build]
@@ -108,19 +115,35 @@ livereloadPort: 35729
 - `source` is the source markdown filename. Default is `slides.md`.
 - `title` is the page title of the slides. Default is an empty string.
 - `css` is css text you want to add to slides' html page.
-- `cssFiles` is the list of additional stylesheet files (URL or the file path relative to your current working director) you want to add to slides' html page. If you provide file paths, these files are copied/served statically. Default is an empty array.
+- `cssFiles` is the list of additional stylesheet files (URL or the file path
+  relative to your current working director) you want to add to slides' html
+  page. If you provide file paths, these files are copied/served statically.
+  Default is an empty array.
 
 ## Advanced options
 
-- `assets` is the list of assets directory. These directories are copied/served statically.
-- `scriptFiles` is the list of additional JavaScript files (URL or the file path relative to your current working director) appended after the remark.js. If you provide file paths, these files are copied/served statically. Default is an empty array.
-- `script` is additional JavaScript code appended after the remark.js and `scriptFiles`. Default is an empty string.
-- `remarkConfig` is the config object which is passed to remark.create(options). Default is an empty object.
-  - See [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48) for what option is available.
-- `remarkPath` is the path to remark.js. This replaces the original remark.js with specified one.
-- `scriptFilesAfterCreate`  is the list of additional JavaScript files (URL or the file path relative to your current working director) appended after the `remark.create()`. If you provide file paths, these files are copied/served statically. Default is an empty array.
+- `assets` is the list of assets directory. These directories are copied/served
+  statically.
+- `scriptFiles` is the list of additional JavaScript files (URL or the file path
+  relative to your current working director) appended after the remark.js. If
+  you provide file paths, these files are copied/served statically. Default is
+  an empty array.
+- `script` is additional JavaScript code appended after the remark.js and
+  `scriptFiles`. Default is an empty string.
+- `remarkConfig` is the config object which is passed to remark.create(options).
+  Default is an empty object.
+  - See
+    [the remark source code](https://github.com/gnab/remark/blob/develop/src/remark/models/slideshow.js#L41-L48)
+    for what option is available.
+- `remarkPath` is the path to remark.js. This replaces the original remark.js
+  with specified one.
+- `scriptFilesAfterCreate` is the list of additional JavaScript files (URL or
+  the file path relative to your current working director) appended after the
+  `remark.create()`. If you provide file paths, these files are copied/served
+  statically. Default is an empty array.
 - `livereload` is the flag to toggle livereloading feature. Default is true.
-- `livereloadPort` is the port number for livereloading websocket connection. Default is 35729.
+- `livereloadPort` is the port number for livereloading websocket connection.
+  Default is 35729.
 
 ## CLI Usage
 
@@ -155,15 +178,26 @@ Options:
 
 # Motivation of `remarker`
 
-`remark` is a great presentation tool and you can write your slide's contents in markdown. The problem is when you simply use remark, you need to maintain the html, css and scripts as well as markdown. If you care the details of design and style of the slides, that's fine. However if you don't care the design of the slides that much and want to focus only on the contents, then the settings of css, html, scripts seem quite messy. `remarker` solves this problem. `remarker` separates the contents (= markdown) from the settings (css, html, scripts). So you can only focus on and keep maintaining the contents of the slides and let `remarker` do the rest of the work. This is easier than using `remark` directly.
+`remark` is a great presentation tool and you can write your slide's contents in
+markdown. The problem is when you simply use remark, you need to maintain the
+html, css and scripts as well as markdown. If you care the details of design and
+style of the slides, that's fine. However if you don't care the design of the
+slides that much and want to focus only on the contents, then the settings of
+css, html, scripts seem quite messy. `remarker` solves this problem. `remarker`
+separates the contents (= markdown) from the settings (css, html, scripts). So
+you can only focus on and keep maintaining the contents of the slides and let
+`remarker` do the rest of the work. This is easier than using `remark` directly.
 
 # How-tos
 
 ## How to use images in slides
 
-Put the images under `./assets` directory and they are automatically served/copied and you can reference it like `<img src="assets/my-diagram.png" width="600" />` in your slides.
+Put the images under `./assets` directory and they are automatically
+served/copied and you can reference it like
+`<img src="assets/my-diagram.png" width="600" />` in your slides.
 
-The directory name of `assets` can be configured in `remarker.yml`. See the configuration section for details.
+The directory name of `assets` can be configured in `remarker.yml`. See the
+configuration section for details.
 
 # Who uses this tool?
 
@@ -171,18 +205,19 @@ See [this search](https://github.com/search?q=filename%3Aremarker.yml).
 
 # History
 
-- 2022-02-13   v1.13.0  Fixed error while changing slides.md
-- 2020-05-11   v1.12.0  Added scriptFilesAfterCreate option.
-- 2019-10-18   v1.11.1  Fix dependency.
-- 2019-10-18   v1.11.0  Added `-b, --open-browser` option.
-- 2019-05-14   v1.10.0  Added `--dest`, `--out`, and `--port` CLI options.
-- 2018-08-06   v1.9.0   Added :emoji: transformation. Modify `cssFiles` option handling (#11).
-- 2018-06-10   v1.8.1   Fixed help and version options.
-- 2018-06-10   v1.8.0   Added livereloading feature.
-- 2018-01-29   v1.7.0   Enabled file asset (#8).
-- 2018-01-13   v1.6.1   Fixed -s option.
-- 2018-01-12   v1.6.0   Added --source cli option.
-- 2017-08-05   v1.3.0   Added remarkConfig prop.
+- 2022-02-13 v1.13.0 Fixed error while changing slides.md
+- 2020-05-11 v1.12.0 Added scriptFilesAfterCreate option.
+- 2019-10-18 v1.11.1 Fix dependency.
+- 2019-10-18 v1.11.0 Added `-b, --open-browser` option.
+- 2019-05-14 v1.10.0 Added `--dest`, `--out`, and `--port` CLI options.
+- 2018-08-06 v1.9.0 Added :emoji: transformation. Modify `cssFiles` option
+  handling (#11).
+- 2018-06-10 v1.8.1 Fixed help and version options.
+- 2018-06-10 v1.8.0 Added livereloading feature.
+- 2018-01-29 v1.7.0 Enabled file asset (#8).
+- 2018-01-13 v1.6.1 Fixed -s option.
+- 2018-01-12 v1.6.0 Added --source cli option.
+- 2017-08-05 v1.3.0 Added remarkConfig prop.
 
 # License
 

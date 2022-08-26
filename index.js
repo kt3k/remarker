@@ -9,44 +9,44 @@ const {
   debugPagePath,
   helpMessage,
   loggerTitle,
-  addMiddleware
-} = require('berber')
-const layout1 = require('layout1')
-const rename = require('gulp-rename')
-const { readFileSync, existsSync, statSync } = require('fs')
-const { join } = require('path')
-const minimisted = require('minimisted')
-const openurl = require('openurl')
-const yaml = require('js-yaml')
+  addMiddleware,
+} = require("berber");
+const layout1 = require("layout1");
+const rename = require("gulp-rename");
+const { readFileSync, existsSync, statSync } = require("fs");
+const { join } = require("path");
+const minimisted = require("minimisted");
+const openurl = require("openurl");
+const yaml = require("js-yaml");
 
-const transform = require('vinyl-transform')
-const map = require('map-stream')
-const emoji = require('node-emoji')
+const transform = require("vinyl-transform");
+const map = require("map-stream");
+const emoji = require("node-emoji");
 
-require.extensions['.yaml'] = require.extensions['.yml'] = function (
+require.extensions[".yaml"] = require.extensions[".yml"] = function (
   module,
-  filename
+  filename,
 ) {
-  module.exports = yaml.load(readFileSync(filename, 'utf8'))
-}
+  module.exports = yaml.load(readFileSync(filename, "utf8"));
+};
 
 const emojify = () =>
-  transform(filename =>
+  transform((filename) =>
     map((chunk, next) => next(null, emoji.emojify(chunk.toString())))
-  )
+  );
 
-const read = path => readFileSync(join(__dirname, path)).toString()
+const read = (path) => readFileSync(join(__dirname, path)).toString();
 
-const layoutFilename = join(__dirname, 'layout.njk')
+const layoutFilename = join(__dirname, "layout.njk");
 
-const defaultCss = read('assets/default.css')
+const defaultCss = read("assets/default.css");
 
-const defaultAssetsPath = 'assets'
+const defaultAssetsPath = "assets";
 
 const defaultConfig = {
-  title: '', // The page title of the result html
-  description: '', // The description og:description meta tag
-  ogImage: '', // The url for og:image and twitter:image
+  title: "", // The page title of the result html
+  description: "", // The description og:description meta tag
+  ogImage: "", // The url for og:image and twitter:image
   ogImageWidth: null, // The width of og:image
   ogImageHeight: null, // The height of og:image
   twitter: null, // twitter display id
@@ -55,40 +55,40 @@ const defaultConfig = {
   port: 6275, // The port number of dev server
   livereload: true,
   livereloadPort: 35729,
-  dest: 'build', // The destination directory of built assets
-  out: 'index.html', // The result html filename of the slides
-  source: 'slides.md', // The source of the slides
+  dest: "build", // The destination directory of built assets
+  out: "index.html", // The result html filename of the slides
+  source: "slides.md", // The source of the slides
   css: defaultCss, // The additional css for the slides
   cssFiles: [], // The additional css files
-  script: '', // The additional script for the slides
+  script: "", // The additional script for the slides
   scriptFiles: [], // The additional script files
   remarkConfig: {}, // The config object passed to remark
-  remarkPath: join(__dirname, 'vendor', 'remark.js'), // The remark path
+  remarkPath: join(__dirname, "vendor", "remark.js"), // The remark path
   scriptFilesAfterCreate: [], // The additional script files loaded after remark.create
   assets: [defaultAssetsPath], // The asset paths
-  'open-browser': false // open the browser to the page when the server starts
-}
+  "open-browser": false, // open the browser to the page when the server starts
+};
 
-name('remarker')
-debugPagePath('__remarker__')
-loggerTitle('remarker')
-helpMessage(read('assets/help-message.txt'))
+name("remarker");
+debugPagePath("__remarker__");
+loggerTitle("remarker");
+helpMessage(read("assets/help-message.txt"));
 
 const onConfig = (config, argv) => {
-  config = Object.assign({}, defaultConfig, config, argv)
+  config = Object.assign({}, defaultConfig, config, argv);
 
-  port(config.port)
-  dest(config.dest)
+  port(config.port);
+  dest(config.dest);
 
   const cssFiles = !Array.isArray(config.cssFiles)
     ? Array(config.cssFiles)
-    : config.cssFiles
+    : config.cssFiles;
   const scriptFiles = !Array.isArray(config.scriptFiles)
     ? Array(config.scriptFiles)
-    : config.scriptFiles
+    : config.scriptFiles;
   const scriptFilesAfterCreate = !Array.isArray(config.scriptFilesAfterCreate)
     ? Array(config.scriptFilesAfterCreate)
-    : config.scriptFilesAfterCreate
+    : config.scriptFilesAfterCreate;
 
   const slidePipeline = asset(config.source)
     .assetOptions({ allowEmpty: true })
@@ -111,98 +111,97 @@ const onConfig = (config, argv) => {
           url: config.url,
           remarkConfig: config.remarkConfig,
           scriptFilesAfterCreate: scriptFilesAfterCreate,
-          livereloadPort: config.livereloadPort
-        }
-      })
-    )
+          livereloadPort: config.livereloadPort,
+        },
+      }),
+    );
 
   // livereload settings
   if (config.livereload) {
-    on('serve', () => {
-      onLivereloadConfig(slidePipeline, config)
-    })
+    on("serve", () => {
+      onLivereloadConfig(slidePipeline, config);
+    });
   }
 
   // open browser if the option specified
-  if (config['open-browser']) {
-    on('serve', () => {
-      openurl.open('http://localhost:' + config.port)
-    })
+  if (config["open-browser"]) {
+    on("serve", () => {
+      openurl.open("http://localhost:" + config.port);
+    });
   }
 
-  asset(config.remarkPath).pipe(rename('remark.js'))
+  asset(config.remarkPath).pipe(rename("remark.js"));
 
   cssFiles
-    .filter(src => !/^http/.test(src))
-    .forEach(src => {
-      asset(src).base(process.cwd())
-    })
+    .filter((src) => !/^http/.test(src))
+    .forEach((src) => {
+      asset(src).base(process.cwd());
+    });
 
   scriptFiles
-    .filter(src => !/^http/.test(src))
-    .forEach(src => {
-      asset(src).base(process.cwd())
-    })
+    .filter((src) => !/^http/.test(src))
+    .forEach((src) => {
+      asset(src).base(process.cwd());
+    });
 
-  config.assets.forEach(src => {
+  config.assets.forEach((src) => {
     if (existsSync(src)) {
-      const stat = statSync(src)
+      const stat = statSync(src);
 
       if (stat.isDirectory()) {
-        asset(join(src, '**/*.*')).base(process.cwd())
+        asset(join(src, "**/*.*")).base(process.cwd());
       } else if (stat.isFile()) {
-        asset(src).base(process.cwd())
+        asset(src).base(process.cwd());
       } else {
         console.log(
-          `Warning: asset entry '${src}' has unknown type, skipping this entry`
-        )
+          `Warning: asset entry '${src}' has unknown type, skipping this entry`,
+        );
       }
     } else if (src === defaultAssetsPath) {
       // do nothing, ignore silently
     } else {
       console.log(
-        `Warning: asset entry '${src}' not found, skipping this entry`
-      )
+        `Warning: asset entry '${src}' not found, skipping this entry`,
+      );
     }
-  })
-}
+  });
+};
 
 const livereloadScriptMiddleware = (req, res, next) => {
-  if (require('url').parse(req.url).pathname !== '/livereload.js') {
-    next()
-    return
+  if (require("url").parse(req.url).pathname !== "/livereload.js") {
+    next();
+    return;
   }
 
-  const livereloadScript = read('vendor/livereload.js')
+  const livereloadScript = read("vendor/livereload.js");
 
-  res.setHeader('Content-Type', 'text/javascript')
-  res.end(livereloadScript)
-}
+  res.setHeader("Content-Type", "text/javascript");
+  res.end(livereloadScript);
+};
 
 const onLivereloadConfig = (slidePipeline, config) => {
-  const livereload = require('connect-livereload')
-  const gulplivereload = require('gulp-livereload')
+  const livereload = require("connect-livereload");
+  const gulplivereload = require("gulp-livereload");
 
-  const port = config.livereloadPort
+  const port = config.livereloadPort;
 
-  addMiddleware(() => livereload({ port, src: '/livereload.js' }))
+  addMiddleware(() => livereload({ port, src: "/livereload.js" }));
 
-  addMiddleware(() => livereloadScriptMiddleware)
+  addMiddleware(() => livereloadScriptMiddleware);
 
-  gulplivereload.listen({ port })
-  slidePipeline.pipe(gulplivereload({ port }))
-}
+  gulplivereload.listen({ port });
+  slidePipeline.pipe(gulplivereload({ port }));
+};
 
-on('config', config =>
-  minimisted(argv => onConfig(config, argv), {
-    string: ['source', 'out', 'dest', 'port'],
-    boolean: ['open-browser'],
+on("config", (config) =>
+  minimisted((argv) => onConfig(config, argv), {
+    string: ["source", "out", "dest", "port"],
+    boolean: ["open-browser"],
     alias: {
-      s: 'source',
-      o: 'out',
-      p: 'port',
-      d: 'dest',
-      b: 'open-browser'
-    }
-  })
-)
+      s: "source",
+      o: "out",
+      p: "port",
+      d: "dest",
+      b: "open-browser",
+    },
+  }));
