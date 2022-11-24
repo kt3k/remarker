@@ -34,10 +34,19 @@
     {% endfor %}
     <style type="text/css">
       {{ css | safe }}
+      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
     </style>
   </head>
   <body>
-    <textarea id="source">{{ file.contents | safe }}</textarea>
+    <textarea id="source" style="display: none">{{ file.contents | safe }}</textarea>
+    <div style="z-index: -1; position: fixed; display: flex; align-items: center; gap: 4px;">
+      <svg style="animation: spin 1s linear infinite; width: 18px; height: 18px;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+      </svg>
+      <span>loading...</span>
+    </div>
     <script src="remark.js"></script>
     {% for file in scriptFiles %}
     <script src="{{ file }}"></script>
