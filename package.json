@@ -47,7 +47,7 @@
     "yaml-hook": "^1.0.0"
   },
   "devDependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "chai": "^4.1.0",
     "codecov": "^3.6.5",
     "kocha": "^1.8.0",
